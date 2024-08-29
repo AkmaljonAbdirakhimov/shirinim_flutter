@@ -14,12 +14,15 @@ class Images {
   static const String loginBg = "$images/login_start_bg.png";
 
   // svgs
+  static const String google = "$svgs/google.svg";
+  static const String apple = "$svgs/apple.svg";
 }
 
 class AppColors {
   AppColors._();
 
   static const Color primary = Color(0xFF3FB4B1);
+  static const Color primary22Opacity = Color(0xFFd5eeee);
 }
 
 class Fonts {

@@ -6,7 +6,7 @@ import 'package:shirinim/core/core.dart';
 import 'package:shirinim/core/extensions/extensions.dart';
 import 'package:shirinim/ui/screens/auth/login_start_screen.dart';
 
-import 'onboarding_data.dart';
+import '../models/onboarding_data.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -17,6 +17,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final streamPageController = StreamController<int>.broadcast();
+  final opacityController = StreamController<double>.broadcast();
   final List<OnboardingData> pages = [
     OnboardingData(
       title: 'Share Your\nRecipes',
@@ -44,11 +45,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
 
     streamPageController.sink.add(0);
+    opacityController.sink.add(0.5);
   }
 
   @override
   void dispose() {
     streamPageController.close();
+    opacityController.close();
     super.dispose();
   }
 
@@ -94,13 +97,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               StreamBuilder(
                 stream: streamPageController.stream,
-                builder: (context, snapshot) {
-                  return AnimatedOpacity(
-                    duration: const Duration(seconds: 1),
-                    opacity: 1,
-                    child: OnboardingPage(
-                      data: pages[snapshot.data ?? 0],
-                    ),
+                builder: (context, pageSnapshot) {
+                  opacityController.add(0.5);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    opacityController.add(1);
+                  });
+                  return StreamBuilder(
+                    stream: opacityController.stream,
+                    builder: (context, opacitySnapshot) {
+                      return AnimatedOpacity(
+                        duration: const Duration(seconds: 1),
+                        opacity: opacitySnapshot.data ?? 0.5,
+                        child: OnboardingPage(
+                          data: pages[pageSnapshot.data ?? 0],
+                        ),
+                      );
+                    },
                   );
                 },
               ),

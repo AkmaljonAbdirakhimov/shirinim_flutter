@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shirinim/core/core.dart';
-import 'package:shirinim/ui/screens/splash/models/onboarding_screen.dart';
+import 'package:shirinim/ui/screens/splash/views/onboarding_screen.dart';
 import 'package:shirinim/ui/widgets/widgets.dart';
 
 class WelcomeScreen extends StatelessWidget {

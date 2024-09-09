@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "440642939747",
+    "project_id": "pexilbek",
+    "storage_bucket": "pexilbek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440642939747:android:ae6397b09b2c859ce60156",
+        "android_client_info": {
+          "package_name": "com.example.shirinim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440642939747-kjolrckp8mksr0t3ua2vb0s3fh953l1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6JHnzNGBjFL2f4MVsg6-RbHlxNosyxBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440642939747-kjolrckp8mksr0t3ua2vb0s3fh953l1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,9 +15,11 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends State<OnboardingScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController fadeController;
+  late Animation<double> fadeAnimation;
   final streamPageController = StreamController<int>.broadcast();
-  final opacityController = StreamController<double>.broadcast();
   final List<OnboardingData> pages = [
     OnboardingData(
       title: 'Share Your\nRecipes',
@@ -40,18 +42,62 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   ];
   Offset scrollOffset = const Offset(0, 0);
   int currentPage = 0;
+  double opacity = 1.0;
+
   @override
   void initState() {
     super.initState();
 
     streamPageController.sink.add(0);
-    opacityController.sink.add(0.5);
+    fadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    fadeAnimation = Tween<double>(begin: 1, end: 0.5).animate(
+      CurvedAnimation(
+        parent: fadeController,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  Future<void> onHorizontalDragEnd(DragEndDetails details) async {
+    if (details.primaryVelocity! > 0) {
+      // previous page
+      if (currentPage != 0) {
+        await changePage(currentPage - 1);
+      }
+    } else if (details.primaryVelocity! < 0) {
+      // next page
+      if (currentPage != pages.length - 1) {
+        await changePage(currentPage + 1);
+      } else if (currentPage == pages.length - 1) {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return FadeTransition(
+                opacity: animation,
+                child: const LoginStartScreen(),
+              );
+            },
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> changePage(int newPage) async {
+    await fadeController.forward();
+    currentPage = newPage;
+    streamPageController.add(currentPage);
+    await fadeController.reverse();
   }
 
   @override
   void dispose() {
     streamPageController.close();
-    opacityController.close();
+    fadeController.dispose();
     super.dispose();
   }
 
@@ -59,60 +105,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onHorizontalDragEnd: (details) async {
-          if (details.primaryVelocity! > 0) {
-            // previous page
-            if (currentPage != 0) {
-              currentPage--;
-              streamPageController.add(currentPage);
-              return;
-            }
-          } else if (details.primaryVelocity! < 0) {
-            // next page
-            if (currentPage != pages.length - 1) {
-              currentPage++;
-              streamPageController.add(currentPage);
-              return;
-            }
-
-            if (currentPage == pages.length - 1) {
-              Navigator.pushReplacement(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: const LoginStartScreen(),
-                    );
-                  },
-                ),
-              );
-            }
-          }
-        },
+        onHorizontalDragEnd: onHorizontalDragEnd,
         child: Container(
           width: double.infinity,
           color: Colors.black,
           child: Stack(
             children: [
-              StreamBuilder(
+              StreamBuilder<int>(
                 stream: streamPageController.stream,
                 builder: (context, pageSnapshot) {
-                  opacityController.add(0.5);
-                  Future.delayed(const Duration(milliseconds: 500), () {
-                    opacityController.add(1);
-                  });
-                  return StreamBuilder(
-                    stream: opacityController.stream,
-                    builder: (context, opacitySnapshot) {
-                      return AnimatedOpacity(
-                        duration: const Duration(seconds: 1),
-                        opacity: opacitySnapshot.data ?? 0.5,
-                        child: OnboardingPage(
-                          data: pages[pageSnapshot.data ?? 0],
-                        ),
-                      );
-                    },
+                  return FadeTransition(
+                    opacity: fadeAnimation,
+                    child: OnboardingPage(
+                      data: pages[pageSnapshot.data ?? 0],
+                    ),
                   );
                 },
               ),

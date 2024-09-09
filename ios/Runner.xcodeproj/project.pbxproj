@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
+		38F861C02C8F3D7600090FFF /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 38F861BF2C8F3D7600090FFF /* FacebookAEM */; };
+		38F861C22C8F3D7600090FFF /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 38F861C12C8F3D7600090FFF /* FacebookBasics */; };
+		38F861C42C8F3D7600090FFF /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 38F861C32C8F3D7600090FFF /* FacebookCore */; };
+		38F861C62C8F3D7600090FFF /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = 38F861C52C8F3D7600090FFF /* FacebookGamingServices */; };
+		38F861C82C8F3D7600090FFF /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 38F861C72C8F3D7600090FFF /* FacebookLogin */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		55979188C64F686506D90844 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 069A5B0C6AFDD4BEC1F8B57C /* GoogleService-Info.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		891DB2C6F55B5D5B100C0865 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99802121237D415E5B2B5B47 /* Pods_RunnerTests.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -42,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		069A5B0C6AFDD4BEC1F8B57C /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
@@ -80,7 +87,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F861C22C8F3D7600090FFF /* FacebookBasics in Frameworks */,
+				38F861C02C8F3D7600090FFF /* FacebookAEM in Frameworks */,
+				38F861C82C8F3D7600090FFF /* FacebookLogin in Frameworks */,
 				C3190FCAFB19AF705EEF80D7 /* Pods_Runner.framework in Frameworks */,
+				38F861C62C8F3D7600090FFF /* FacebookGamingServices in Frameworks */,
+				38F861C42C8F3D7600090FFF /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +126,6 @@
 				8F6C6B92DE50BDE1616FC981 /* Pods-RunnerTests.release.xcconfig */,
 				3A033EC824828C7E114D87B3 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -138,6 +149,7 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				872CB73D9F461AC28BBA52C6 /* Pods */,
 				28CC63AB0166745B637EEA7A /* Frameworks */,
+				069A5B0C6AFDD4BEC1F8B57C /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,12 +211,20 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				5B9D8F6E971AD83E2A3AED04 /* [CP] Embed Pods Frameworks */,
+				CBDECF6CEAA562A4AE14F7AA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Runner;
+			packageProductDependencies = (
+				38F861BF2C8F3D7600090FFF /* FacebookAEM */,
+				38F861C12C8F3D7600090FFF /* FacebookBasics */,
+				38F861C32C8F3D7600090FFF /* FacebookCore */,
+				38F861C52C8F3D7600090FFF /* FacebookGamingServices */,
+				38F861C72C8F3D7600090FFF /* FacebookLogin */,
+			);
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
@@ -238,6 +258,9 @@
 				Base,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
+			packageReferences = (
+				38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,6 +287,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				55979188C64F686506D90844 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +363,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		CBDECF6CEAA562A4AE14F7AA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		EBF6229253C2370E89B5F8BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -726,6 +767,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		38F861BF2C8F3D7600090FFF /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		38F861C12C8F3D7600090FFF /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		38F861C32C8F3D7600090FFF /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		38F861C52C8F3D7600090FFF /* FacebookGamingServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookGamingServices;
+		};
+		38F861C72C8F3D7600090FFF /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38F861BE2C8F3D7600090FFF /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97C146E61CF9000F007C117D /* Project object */;
 }

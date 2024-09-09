@@ -1,5 +1,6 @@
 import 'package:shirinim/data/models/auth/login_request.dart';
 import 'package:shirinim/data/models/auth/register_request.dart';
+import 'package:shirinim/data/models/auth/social_login_request.dart';
 import 'package:shirinim/data/services/auth_api_service.dart';
 import 'package:shirinim/data/services/auth_local_service.dart';
 
@@ -19,6 +20,11 @@ class AuthRepository {
 
   Future<void> login(LoginRequest request) async {
     final authResponse = await authApiService.login(request);
+    await authLocalService.saveToken(authResponse);
+  }
+
+   Future<void> socialLogin(SocialLoginRequest request) async {
+    final authResponse = await authApiService.socialLogin(request);
     await authLocalService.saveToken(authResponse);
   }
 
